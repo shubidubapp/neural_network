@@ -9,7 +9,7 @@ def sigmoid(x):
 
 
 def dsigmoid(x):
-    y = np.multiply(x, (1-x))
+    y = np.multiply(sigmoid(x), (1 - sigmoid(x)))
     return y
 
 
@@ -45,9 +45,9 @@ class Perceptron:
             total += self.weights[i] * inputs[i]
         return self.activate(total)
 
-    def train(self, inputs: list, expected):
+    def train(self, inputs: list, target):
         guess_output = self.guess(inputs)
-        error = expected - guess_output
+        error = target - guess_output
         for i in range(self.input_count):
             self.weights[i] += self.learning_rate * error * inputs[i]
 
